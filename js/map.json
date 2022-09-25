@@ -1,17 +1,17 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Happiness Score in Countries between 2015 - 2019",
+  "title": "Happiness Score in Countries between 2007 - 2021",
   "width": 800,
   "height": 500,
   "projection": {"type": "equalEarth"},
   "params": [
     {
       "name": "year_selection",
-      "value": 2019,
+      "value": 2021,
       "bind": {
         "input": "range",
-        "min": 2015,
-        "max": 2019,
+        "min": 2007,
+        "max": 2021,
         "step": 1,
         "name": "year_selection"
       }
@@ -52,8 +52,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/world-happiness-report.csv",
-        "format": {"type": "csv"}
+        "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/world-happiness-report.csv"
       },
       "transform": [
         {
@@ -64,17 +63,26 @@
               "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
             },
             "key": "properties.NAME"
-          }
+          },
+          "as": "geo"
         },
         {"filter": "datum.Year == year_selection"},
         {"calculate": "datum.Score", "as": "Score"}
       ],
       "mark": {"type": "geoshape", "stroke": "white"},
       "encoding": {
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
         "color": {
           "field": "Score",
           "type": "quantitative",
-          "scale": {"type": "linear"}
+          "scale": {
+            "type": "threshold",
+            "domain": [ 4, 5, 6, 7],
+            "range": ["#FFFDD0", "#FFFF33","#FFEF00", "#F2BB66", "#FFA500"]
+          }
         },
         "tooltip": [
           {"field": "Country", "type": "nominal", "title": "Country"},
