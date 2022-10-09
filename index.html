@@ -6,11 +6,11 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
 </head>
 <body>
-  <div id="vis">
+  <div id="vis1">
   <script>
     const spec = {
       
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Happiness Score in Countries between 2007 - 2021",
   "width": 800,
   "height": 500,
@@ -91,7 +91,7 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [ 4, 5, 6, 7]
+            "domain": [ 3,4, 5, 6, 7]
           }
         },
         "tooltip": [
@@ -104,8 +104,158 @@
     
   ],
   "config": {}
-};
-    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  };
+  vegaEmbed("#vis1", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
   </script>
+  <div id="vis2">
+    <script>
+      const spec1 = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 600,
+    "title": "Happiness Score and healthy life expectency",
+    "data": 
+    {
+        "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"  
+    },
+    "params": [
+        {
+          "name": "year_selection",
+          "value": 2021,
+          "bind": {
+            "input": "range",
+            "min": 2007,
+            "max": 2021,
+            "step": 1,
+            "name": "year_selection"
+          }
+        },
+        {
+            "name": "Continent_selection",
+            "bind": {
+            "input": "select",
+            "options": [
+                null,
+                "North America",
+                "South America",
+                "Europe",
+                "Africa",
+                "Asia",
+                "Oceania"
+            ],
+            "labels":[
+                "Show All",
+                "North America",
+                "South America",
+                "Europe",
+                "Africa",
+                "Asia",
+                "Oceania"
+            ],
+            "name": "Region Selection: "
+            }
+        },
+        {
+            "name": "Population_Above",
+            "value": 0,
+            "bind": {
+            "input": "range",
+            "min": 0,
+            "max": 100000000,
+            "step": 1000000,
+            "name": "Minimum Population: "
+            }
+        }    
+      ],
+    "transform": [
+        {"filter": "datum.year == year_selection"},
+        {"filter": "datum.Healthy > 35"},
+        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+        {"filter": "datum.Population > Population_Above"}   
+    ],
+    "encoding": {
+        "x": {
+            "field": "Healthy",
+            "type": "quantitative",
+            "title": "healthy",
+            "scale": {"type": "linear", "domain": [35, 80]}
+        },
+        "y": {
+            "field": "Score",
+            "type": "quantitative",
+            "scale": {"type": "linear", "domain": [2, 8]}
+        }
+    },
+    "layer":[
+        {
+            "mark": "circle",
+            "encoding": {
+                "color": {
+                    "field": "Region",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "North America",
+                            "South America",
+                            "Europe",
+                            "Africa",
+                            "Asia",
+                            "Oceania"
+                            ],
+                        "range": [
+                            "#e41a1c",
+                            "#984ea3",
+                            "#ff7f00",
+                            "#a6cee3",
+                            "#377eb8",
+                            "#a65628"
+                            ]
+                        }
+                },
+                "size": {
+                    "field": "Population",
+                    "type": "quantitative",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                    },
+                    "legend": {"format": ".1s"}
+                },  
+                "tooltip": [
+                    {"field": "Country", "type": "nominal", "title": "Country"},
+                    {"field": "Score", "type": "quantitative"},
+                    {"field": "Healthy", "type": "quantitative"},
+                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                  ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "dx": -12,
+                "fontSize": 11.5,
+                "fontStyle": "italic"
+            },
+            "encoding": {
+            "text": {"field": "Country", "type": "nominal"},
+            "color": {"value": "black"},
+            "opacity": {
+                "condition": {
+                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' || datum['Country'] == 'United States of America'",
+                    "value": 1
+                    },
+                    "value": 0
+                    }
+            }               
+        }
+    ]
+}
+vegaEmbed("#vis2", spec1, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+    </script>
+
+  </div>
 </body>
 </html>
