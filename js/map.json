@@ -3,7 +3,6 @@
   "title": "Happiness Score in Countries between 2007 - 2021",
   "width": 800,
   "height": 500,
-  "projection": {"type": "equalEarth"},
   "params": [
     {
       "name": "year_selection",
@@ -15,8 +14,44 @@
         "step": 1,
         "name": "year_selection"
       }
-    }
+    },
+    {
+      "name": "zoom_level",
+      "value": 140,
+      "bind": {
+      "input": "range",
+      "min": 120,
+      "max": 400,
+      "step": 10,
+      "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "bind": {
+      "input": "select",
+      "options": [
+        [0, 0],
+        [121.29, 47.11],
+        [150, -20.53],
+        [197.751569, 1.675063],
+        [-30, 230],
+        [-40, 20],
+        [-10,-25]
+      ],
+      "labels": [
+        "None",
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"],
+      "name": "Map Focus: "
+      }
+  }      
   ],
+  "projection": {"type": "equalEarth", "rotate": [-150, 0, 0], "scale": {"expr": "zoom_level"}, "center": {"expr": "center_to"}},
   "layer": [
     {
       "data": {
@@ -86,7 +121,8 @@
         "tooltip": [
           {"field": "Country", "type": "nominal", "title": "Country"},
           {"field": "Score", "type": "quantitative"},
-          {"field": "year", "type": "quantitative"}
+          {"field": "year", "type": "quantitative"},
+          {"field": "Region", "type": "nominal"}
         ]
       }
     }
