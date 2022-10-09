@@ -113,6 +113,7 @@
                 },  
                 "tooltip": [
                     {"field": "Country", "type": "nominal", "title": "Country"},
+                    {"field": "Region", "type": "nominal"},
                     {"field": "Score", "type": "quantitative"},
                     {"field": "Healthy", "type": "quantitative"},
                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
@@ -133,7 +134,7 @@
             "color": {"value": "black"},
             "opacity": {
                 "condition": {
-                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' || datum['Country'] == 'United States of America'",
+                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
                     "value": 1
                     },
                     "value": 0
