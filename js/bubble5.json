@@ -59,7 +59,6 @@
     "transform": [
         {"filter": "datum.year == year_selection"},
         {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
-        {"filter": "datum.Generosity > 0"},
         {"filter": "datum.Population > Population_Above"}   
     ],
     "encoding": {

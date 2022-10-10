@@ -67,7 +67,7 @@
             "field": "GDP_per_capita",
             "type": "quantitative",
             "title": "GDP(log)",
-            "scale": {"type": "linear"}
+            "scale": {"type": "linear", "domain": [6, 12]}
         },
         "y": {
             "field": "Score",

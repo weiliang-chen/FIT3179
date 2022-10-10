@@ -67,7 +67,7 @@
             "field": "Perceptions_of_corruption",
             "type": "quantitative",
             "title": "Perceptions_of_corruption",
-            "scale": {"type": "linear", "domain": [0.25, 1.00]}
+            "scale": {"type": "linear"}
         },
         "y": {
             "field": "Score",
