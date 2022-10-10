@@ -59,15 +59,15 @@
     "transform": [
         {"filter": "datum.year == year_selection"},
         {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
-        {"filter": "datum.Social_support > 0.25"},
+        {"filter": "datum.GDP_per_capita > 0"},
         {"filter": "datum.Population > Population_Above"}   
     ],
     "encoding": {
         "x": {
-            "field": "Social_support",
+            "field": "GDP_per_capita",
             "type": "quantitative",
-            "title": "Social support",
-            "scale": {"type": "linear", "domain": [0.25, 1.00]}
+            "title": "GDP(log)",
+            "scale": {"type": "linear"}
         },
         "y": {
             "field": "Score",
@@ -115,7 +115,7 @@
                     {"field": "Country", "type": "nominal", "title": "Country"},
                     {"field": "Region", "type": "nominal"},
                     {"field": "Score", "type": "quantitative"},
-                    {"field": "Social_support", "type": "quantitative"},
+                    {"field": "GDP_per_capita", "type": "quantitative","title": "GDP(log)"},
                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                   ]
             }
