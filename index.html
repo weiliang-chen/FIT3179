@@ -4,13 +4,20 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <title >Country Happiness Score Visualation </title>
+  <h1 class="title"> Country Happiness Score Visualation </h1>
 </head>
+
 <body>
-  <div id="vis1">
+  <h2 class="subTitle">map graph</h2>
+  <div id="vis1"> </div>
   <script>
     const spec = {
       
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Happiness Score in Countries between 2007 - 2021",
   "width": 800,
   "height": 500,
@@ -107,13 +114,11 @@
   };
   vegaEmbed("#vis1", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
   </script>
-  <div id="vis2">
+  <h2 class="subTitle">Country Happiness score and affect factors</h2>
+  <div id="vis2">  
     <script>
       const spec1 = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 600,
-    "height": 600,
-    "title": "Happiness Score and healthy life expectency",
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": 
     {
         "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"  
@@ -167,91 +172,566 @@
             }
         }    
       ],
-    "transform": [
-        {"filter": "datum.year == year_selection"},
-        {"filter": "datum.Healthy > 35"},
-        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
-        {"filter": "datum.Population > Population_Above"}   
-    ],
-    "encoding": {
-        "x": {
-            "field": "Healthy",
-            "type": "quantitative",
-            "title": "Healthy life expectancy",
-            "scale": {"type": "linear", "domain": [35, 80]}
-        },
-        "y": {
-            "field": "Score",
-            "type": "quantitative",
-            "scale": {"type": "linear", "domain": [2, 8]}
-        }
-    },
-    "layer":[
+      "vconcat":[
         {
-            "mark": "circle",
-            "encoding": {
-                "color": {
-                    "field": "Region",
-                    "type": "nominal",
-                    "scale": {
-                        "domain": [
-                            "North America",
-                            "South America",
-                            "Europe",
-                            "Africa",
-                            "Asia",
-                            "Oceania"
-                            ],
-                        "range": [
-                            "#e41a1c",
-                            "#984ea3",
-                            "#ff7f00",
-                            "#a6cee3",
-                            "#377eb8",
-                            "#a65628"
-                            ]
+            "hconcat": [
+                {
+                    "title": "Happiness Score and healthy life expectency",
+                    "width": 600,
+                    "height": 600,
+                    "transform": [
+                        {"filter": "datum.year == year_selection"},
+                        {"filter": "datum.Healthy > 35"},
+                        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+                        {"filter": "datum.Population > Population_Above"}   
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Healthy",
+                            "type": "quantitative",
+                            "title": "Healthy life expectancy",
+                            "scale": {"type": "linear", "domain": [35, 80]}
+                        },
+                        "y": {
+                            "field": "Score",
+                            "type": "quantitative",
+                            "scale": {"type": "linear", "domain": [2, 8]}
                         }
-                },
-                "size": {
-                    "field": "Population",
-                    "type": "quantitative",
-                    "scale": {
-                        "type": "threshold",
-                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
-                        "range": [50, 100, 200, 300, 400, 1000, 2000]
                     },
-                    "legend": {"format": ".1s"}
-                },  
-                "tooltip": [
-                    {"field": "Country", "type": "nominal", "title": "Country"},
-                    {"field": "Region", "type": "nominal"},
-                    {"field": "Score", "type": "quantitative"},
-                    {"field": "Healthy", "type": "quantitative"},
-                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
-                  ]
-            }
+                    "layer":[
+                        {
+                            "mark": "circle",
+                            "encoding": {
+                                "color": {
+                                    "field": "Region",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "domain": [
+                                            "North America",
+                                            "South America",
+                                            "Europe",
+                                            "Africa",
+                                            "Asia",
+                                            "Oceania"
+                                            ],
+                                        "range": [
+                                            "#e41a1c",
+                                            "#984ea3",
+                                            "#ff7f00",
+                                            "#a6cee3",
+                                            "#377eb8",
+                                            "#a65628"
+                                            ]
+                                        }
+                                },
+                                "size": {
+                                    "field": "Population",
+                                    "type": "quantitative",
+                                    "scale": {
+                                        "type": "threshold",
+                                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                                    },
+                                    "legend": {"format": ".1s"}
+                                },  
+                                "tooltip": [
+                                    {"field": "Country", "type": "nominal", "title": "Country"},
+                                    {"field": "Region", "type": "nominal"},
+                                    {"field": "Score", "type": "quantitative"},
+                                    {"field": "Healthy", "type": "quantitative"},
+                                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                                  ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "dx": -12,
+                                "fontSize": 11.5,
+                                "fontStyle": "italic"
+                            },
+                            "encoding": {
+                            "text": {"field": "Country", "type": "nominal"},
+                            "color": {"value": "black"},
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
+                                    "value": 1
+                                    },
+                                    "value": 0
+                                    }
+                            }               
+                        }
+                    ]
+                },
+                {
+                    "width": 600,
+                    "height": 600,
+                    "title": "Happiness Score and Social_support",
+                    "transform": [
+                        {"filter": "datum.year == year_selection"},
+                        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+                        {"filter": "datum.Social_support > 0.25"},
+                        {"filter": "datum.Population > Population_Above"}   
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Social_support",
+                            "type": "quantitative",
+                            "title": "Social support",
+                            "scale": {"type": "linear", "domain": [0.25, 1.00]}
+                        },
+                        "y": {
+                            "field": "Score",
+                            "type": "quantitative",
+                            "scale": {"type": "linear", "domain": [2, 8]}
+                        }
+                    },
+                    "layer":[
+                        {
+                            "mark": "circle",
+                            "encoding": {
+                                "color": {
+                                    "field": "Region",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "domain": [
+                                            "North America",
+                                            "South America",
+                                            "Europe",
+                                            "Africa",
+                                            "Asia",
+                                            "Oceania"
+                                            ],
+                                        "range": [
+                                            "#e41a1c",
+                                            "#984ea3",
+                                            "#ff7f00",
+                                            "#a6cee3",
+                                            "#377eb8",
+                                            "#a65628"
+                                            ]
+                                        }
+                                },
+                                "size": {
+                                    "field": "Population",
+                                    "type": "quantitative",
+                                    "scale": {
+                                        "type": "threshold",
+                                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                                    },
+                                    "legend": {"format": ".1s"}
+                                },  
+                                "tooltip": [
+                                    {"field": "Country", "type": "nominal", "title": "Country"},
+                                    {"field": "Region", "type": "nominal"},
+                                    {"field": "Score", "type": "quantitative"},
+                                    {"field": "Social_support", "type": "quantitative"},
+                                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                                  ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "dx": -12,
+                                "fontSize": 11.5,
+                                "fontStyle": "italic"
+                            },
+                            "encoding": {
+                            "text": {"field": "Country", "type": "nominal"},
+                            "color": {"value": "black"},
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
+                                    "value": 1
+                                    },
+                                    "value": 0
+                                    }
+                            }               
+                        }
+                    ]
+                }
+                
+              ]
         },
         {
-            "mark": {
-                "type": "text",
-                "align": "right",
-                "baseline": "middle",
-                "dx": -12,
-                "fontSize": 11.5,
-                "fontStyle": "italic"
-            },
-            "encoding": {
-            "text": {"field": "Country", "type": "nominal"},
-            "color": {"value": "black"},
-            "opacity": {
-                "condition": {
-                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' || datum['Country'] == 'United States of America'",
-                    "value": 1
+            "hconcat": [
+                {
+                    "width": 600,
+                    "height": 600,
+                    "title": "Happiness Score and GPD per capita",
+                    "transform": [
+                        {"filter": "datum.year == year_selection"},
+                        {"filter": "datum.GDP_per_capita > 0"},
+                        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+                        {"filter": "datum.Population > Population_Above"}   
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "GDP_per_capita",
+                            "type": "quantitative",
+                            "title": "GDP(log)",
+                            "scale": {"type": "linear", "domain": [6, 12]}
+                        },
+                        "y": {
+                            "field": "Score",
+                            "type": "quantitative",
+                            "scale": {"type": "linear", "domain": [2, 8]}
+                        }
                     },
-                    "value": 0
-                    }
-            }               
-        }
+                    "layer":[
+                        {
+                            "mark": "circle",
+                            "encoding": {
+                                "color": {
+                                    "field": "Region",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "domain": [
+                                            "North America",
+                                            "South America",
+                                            "Europe",
+                                            "Africa",
+                                            "Asia",
+                                            "Oceania"
+                                            ],
+                                        "range": [
+                                            "#e41a1c",
+                                            "#984ea3",
+                                            "#ff7f00",
+                                            "#a6cee3",
+                                            "#377eb8",
+                                            "#a65628"
+                                            ]
+                                        }
+                                },
+                                "size": {
+                                    "field": "Population",
+                                    "type": "quantitative",
+                                    "scale": {
+                                        "type": "threshold",
+                                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                                    },
+                                    "legend": {"format": ".1s"}
+                                },  
+                                "tooltip": [
+                                    {"field": "Country", "type": "nominal", "title": "Country"},
+                                    {"field": "Region", "type": "nominal"},
+                                    {"field": "Score", "type": "quantitative"},
+                                    {"field": "GDP_per_capita", "type": "quantitative"},
+                                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                                  ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "dx": -12,
+                                "fontSize": 11.5,
+                                "fontStyle": "italic"
+                            },
+                            "encoding": {
+                            "text": {"field": "Country", "type": "nominal"},
+                            "color": {"value": "black"},
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
+                                    "value": 1
+                                    },
+                                    "value": 0
+                                    }
+                            }               
+                        }
+                    ]
+                },
+                {
+                    "width": 600,
+                    "height": 600,
+                    "title": "Happiness Score and Freedom",
+                    "transform": [
+                        {"filter": "datum.year == year_selection"},
+                        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+                        {"filter": "datum.Freedom > 0"},
+                        {"filter": "datum.Population > Population_Above"}   
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Freedom",
+                            "type": "quantitative",
+                            "title": "Social support",
+                            "scale": {"type": "linear", "domain": [0.25, 1.00]}
+                        },
+                        "y": {
+                            "field": "Score",
+                            "type": "quantitative",
+                            "scale": {"type": "linear", "domain": [2, 8]}
+                        }
+                    },
+                    "layer":[
+                        {
+                            "mark": "circle",
+                            "encoding": {
+                                "color": {
+                                    "field": "Region",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "domain": [
+                                            "North America",
+                                            "South America",
+                                            "Europe",
+                                            "Africa",
+                                            "Asia",
+                                            "Oceania"
+                                            ],
+                                        "range": [
+                                            "#e41a1c",
+                                            "#984ea3",
+                                            "#ff7f00",
+                                            "#a6cee3",
+                                            "#377eb8",
+                                            "#a65628"
+                                            ]
+                                        }
+                                },
+                                "size": {
+                                    "field": "Population",
+                                    "type": "quantitative",
+                                    "scale": {
+                                        "type": "threshold",
+                                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                                    },
+                                    "legend": {"format": ".1s"}
+                                },  
+                                "tooltip": [
+                                    {"field": "Country", "type": "nominal", "title": "Country"},
+                                    {"field": "Region", "type": "nominal"},
+                                    {"field": "Score", "type": "quantitative"},
+                                    {"field": "Freedom", "type": "quantitative"},
+                                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                                  ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "dx": -12,
+                                "fontSize": 11.5,
+                                "fontStyle": "italic"
+                            },
+                            "encoding": {
+                            "text": {"field": "Country", "type": "nominal"},
+                            "color": {"value": "black"},
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
+                                    "value": 1
+                                    },
+                                    "value": 0
+                                    }
+                            }               
+                        }
+                    ]
+                }
+                
+              ]
+        },
+        {
+            "hconcat": [
+                {
+                    "width": 600,
+                    "height": 600,
+                    "title": "Happiness Score and Generosity",
+                    "transform": [
+                        {"filter": "datum.year == year_selection"},
+                        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+                        {"filter": "datum.Population > Population_Above"}   
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Healthy",
+                            "type": "quantitative",
+                            "title": "Healthy life expectancy",
+                            "scale": {"type": "linear"}
+                        },
+                        "y": {
+                            "field": "Score",
+                            "type": "quantitative",
+                            "scale": {"type": "linear", "domain": [2, 8]}
+                        }
+                    },
+                    "layer":[
+                        {
+                            "mark": "circle",
+                            "encoding": {
+                                "color": {
+                                    "field": "Region",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "domain": [
+                                            "North America",
+                                            "South America",
+                                            "Europe",
+                                            "Africa",
+                                            "Asia",
+                                            "Oceania"
+                                            ],
+                                        "range": [
+                                            "#e41a1c",
+                                            "#984ea3",
+                                            "#ff7f00",
+                                            "#a6cee3",
+                                            "#377eb8",
+                                            "#a65628"
+                                            ]
+                                        }
+                                },
+                                "size": {
+                                    "field": "Population",
+                                    "type": "quantitative",
+                                    "scale": {
+                                        "type": "threshold",
+                                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                                    },
+                                    "legend": {"format": ".1s"}
+                                },  
+                                "tooltip": [
+                                    {"field": "Country", "type": "nominal", "title": "Country"},
+                                    {"field": "Region", "type": "nominal"},
+                                    {"field": "Score", "type": "quantitative"},
+                                    {"field": "Generosity", "type": "quantitative"},
+                                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                                  ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "dx": -12,
+                                "fontSize": 11.5,
+                                "fontStyle": "italic"
+                            },
+                            "encoding": {
+                            "text": {"field": "Country", "type": "nominal"},
+                            "color": {"value": "black"},
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
+                                    "value": 1
+                                    },
+                                    "value": 0
+                                    }
+                            }               
+                        }
+                    ]
+                },
+                {
+                    "width": 600,
+                    "height": 600,
+                    "title": "Happiness Score and Perceptions_of_corruption",
+                    "transform": [
+                        {"filter": "datum.year == year_selection"},
+                        {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
+                        {"filter": "datum.Perceptions_of_corruption > 0"},
+                        {"filter": "datum.Population > Population_Above"}   
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Perceptions_of_corruption",
+                            "type": "quantitative",
+                            "title": "Perceptions_of_corruption",
+                            "scale": {"type": "linear"}
+                        },
+                        "y": {
+                            "field": "Score",
+                            "type": "quantitative",
+                            "scale": {"type": "linear", "domain": [2, 8]}
+                        }
+                    },
+                    "layer":[
+                        {
+                            "mark": "circle",
+                            "encoding": {
+                                "color": {
+                                    "field": "Region",
+                                    "type": "nominal",
+                                    "scale": {
+                                        "domain": [
+                                            "North America",
+                                            "South America",
+                                            "Europe",
+                                            "Africa",
+                                            "Asia",
+                                            "Oceania"
+                                            ],
+                                        "range": [
+                                            "#e41a1c",
+                                            "#984ea3",
+                                            "#ff7f00",
+                                            "#a6cee3",
+                                            "#377eb8",
+                                            "#a65628"
+                                            ]
+                                        }
+                                },
+                                "size": {
+                                    "field": "Population",
+                                    "type": "quantitative",
+                                    "scale": {
+                                        "type": "threshold",
+                                        "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
+                                        "range": [50, 100, 200, 300, 400, 1000, 2000]
+                                    },
+                                    "legend": {"format": ".1s"}
+                                },  
+                                "tooltip": [
+                                    {"field": "Country", "type": "nominal", "title": "Country"},
+                                    {"field": "Region", "type": "nominal"},
+                                    {"field": "Score", "type": "quantitative"},
+                                    {"field": "Social_support", "type": "quantitative"},
+                                    {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
+                                  ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "baseline": "middle",
+                                "dx": -12,
+                                "fontSize": 11.5,
+                                "fontStyle": "italic"
+                            },
+                            "encoding": {
+                            "text": {"field": "Country", "type": "nominal"},
+                            "color": {"value": "black"},
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
+                                    "value": 1
+                                    },
+                                    "value": 0
+                                }
+                            }               
+                        }
+                    ]
+                }       
+            ]
+        } 
     ]
 }
 vegaEmbed("#vis2", spec1, {mode: "vega-lite"}).then(console.log).catch(console.warn);
