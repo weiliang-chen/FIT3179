@@ -11,15 +11,16 @@
   <h1 class="title"> Country Happiness Score Visualation </h1>
 </head>
 
+<br>
 <body>
-  <h2 class="subTitle">map graph</h2>
-  <div id="vis1"> </div>
+  <h2 class = "subTitle">Happiness Score in Countries between 2007 - 2021</h2>
+  <div class = "center" id="vis1"> </div>
+
   <script>
     const spec = {
       
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Happiness Score in Countries between 2007 - 2021",
-  "width": 800,
+  "width": "container",
   "height": 500,
   "projection": {"type": "equalEarth"},
   "params": [
@@ -115,7 +116,7 @@
   vegaEmbed("#vis1", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
   </script>
   <h2 class="subTitle">Country Happiness score and affect factors</h2>
-  <div id="vis2">  
+  <div class="center", id="vis2">  
     <script>
       const spec1 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -177,7 +178,7 @@
             "hconcat": [
                 {
                     "title": "Happiness Score and healthy life expectency",
-                    "width": 600,
+                    "width": 650,
                     "height": 600,
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -267,7 +268,7 @@
                     ]
                 },
                 {
-                    "width": 600,
+                    "width": 650,
                     "height": 600,
                     "title": "Happiness Score and Social_support",
                     "transform": [
@@ -363,7 +364,7 @@
         {
             "hconcat": [
                 {
-                    "width": 600,
+                    "width": 650,
                     "height": 600,
                     "title": "Happiness Score and GPD per capita",
                     "transform": [
@@ -454,7 +455,7 @@
                     ]
                 },
                 {
-                    "width": 600,
+                    "width": 650,
                     "height": 600,
                     "title": "Happiness Score and Freedom",
                     "transform": [
@@ -550,7 +551,7 @@
         {
             "hconcat": [
                 {
-                    "width": 600,
+                    "width": 650,
                     "height": 600,
                     "title": "Happiness Score and Generosity",
                     "transform": [
@@ -560,9 +561,9 @@
                     ],
                     "encoding": {
                         "x": {
-                            "field": "Healthy",
+                            "field": "Generosity",
                             "type": "quantitative",
-                            "title": "Healthy life expectancy",
+                            "title": "Generosity",
                             "scale": {"type": "linear"}
                         },
                         "y": {
@@ -640,7 +641,7 @@
                     ]
                 },
                 {
-                    "width": 600,
+                    "width": 650,
                     "height": 600,
                     "title": "Happiness Score and Perceptions_of_corruption",
                     "transform": [

@@ -1,11 +1,21 @@
 .title {
     margin: auto;
-    width: 50%;
+    width: 100%;
     padding: 20px;
+    background-color: lightblue;
+    text-align: center
 }
 
 .subTitle {
     margin: auto;
-    width: 50%;
+    width: 40%;
     padding: 10px;
+    text-align: center;
+    background-color: lightblue;
+}
+
+.center {
+    margin: auto;
+    width: 100%;
+    padding: 20px;
 }
