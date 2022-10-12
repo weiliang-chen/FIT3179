@@ -117,7 +117,7 @@
                     {"field": "Score", "type": "quantitative"},
                     {"field": "GDP_per_capita", "type": "quantitative","title": "GDP(log)"},
                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
-                  ]
+                ]
             }
         },
         {

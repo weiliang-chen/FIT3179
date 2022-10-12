@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 400,
+    "title": { "text": "Average Happiness Score in each region" },
+    "data": {
+    "url":
+        "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"
+    },
+    "transform": [
+        {"filter": "datum.year >= 2007"}
+    ],
+    "encoding": {
+        "color": {
+          "field":"Region",
+          "type":"nominal",
+          "scale": {
+            "domain": [
+                "North America",
+                "South America",
+                "Europe",
+                "Africa",
+                "Asia",
+                "Oceania"
+                ],
+            "range": [
+                "#e41a1c",
+                "#984ea3",
+                "#ff7f00",
+                "#a6cee3",
+                "#377eb8",
+                "#a65628"
+                ]
+            },
+          "legend": {"format": ""}
+        }
+    },
+    "layer": [{
+        "mark": "line",
+        "encoding": {
+            "x": {
+                "field": "year", 
+                "type": "quantitative", 
+                "title": "year", 
+                "scale": {"type": "linear", "domain": [2007, 2021]}
+            },
+            "y": {
+                "field": "Score", 
+                "aggregate": "average", 
+                "type": "quantitative", 
+                "title": "Score",
+                "scale": {"type": "linear", "domain": [2, 8]}
+            }
+        }
+    }]
+}
+    

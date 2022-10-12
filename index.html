@@ -8,21 +8,28 @@
   <link rel="stylesheet" href="css/style.css">
 
   <title >Country Happiness Score Visualation </title>
+  
   <h1 class="title"> Country Happiness Score Visualation </h1>
+  <h3 class="author"> Student Name: Weiliang Chen </h3>
 </head>
-
 <br>
-<body>
+
+<body class = "body">
   <h2 class = "subTitle">Happiness Score in Countries between 2007 - 2021</h2>
-  <div class = "center" id="vis1"> </div>
+  <br>
+  <h3 class = "text"> The happiness score is a data used to measure the happiness rating baesd on residents' evaluation to their country, we 
+    can estimate the countries' living standard. In the map graph below, we can see the scores of countries between 2007 - 2021. </h3>
+  <br>
+  
+  <div class = "center1" id="vis1"> </div>
 
   <script>
     const spec = {
       
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
+  "width": 1200,
   "height": 500,
-  "projection": {"type": "equalEarth"},
+  "projection": {"type": "equalEarth", "rotate": [-150, 0, 0], "scale": {"expr": "zoom_level"}, "center": {"expr": "center_to"}},
   "params": [
     {
       "name": "year_selection",
@@ -34,7 +41,42 @@
         "step": 1,
         "name": "year_selection"
       }
-    }
+    },
+    {
+      "name": "zoom_level",
+      "value": 200,
+      "bind": {
+      "input": "range",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "bind": {
+      "input": "select",
+      "options": [
+        [0, 0],
+        [110, 47.11],
+        [150, -20.53],
+        [-120, 45],
+        [-120, 0],
+        [-40, 20],
+        [-10,-25]
+      ],
+      "labels": [
+        "None",
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"],
+      "name": "Map Focus: "
+      }
+    }  
   ],
   "layer": [
     {
@@ -115,7 +157,14 @@
   };
   vegaEmbed("#vis1", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
   </script>
+  <br>
+  <br>
+  <br>
   <h2 class="subTitle">Country Happiness score and affect factors</h2>
+  <br>
+  <h3 class = "text"> The happiness score is evaluated based on muliple factors. In the charts below, you can see the relationship
+    between happiness and the factors which affects the former. </h3>
+  <br>
   <div class="center", id="vis2">  
     <script>
       const spec1 = {
@@ -232,8 +281,7 @@
                                         "type": "threshold",
                                         "domain": [1000000, 10000000, 50000000, 100000000, 500000000, 1000000000],
                                         "range": [50, 100, 200, 300, 400, 1000, 2000]
-                                    },
-                                    "legend": {"format": ".1s"}
+                                    }
                                 },  
                                 "tooltip": [
                                     {"field": "Country", "type": "nominal", "title": "Country"},
