@@ -165,7 +165,7 @@
   <h3 class = "text"> The happiness score is evaluated based on muliple factors. In the charts below, you can see the relationship
     between happiness and the factors which affects the former. </h3>
   <br>
-  <div class="center", id="vis2">  
+  <div class="center", id="vis2">  </div>
     <script>
       const spec1 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -785,7 +785,70 @@
 }
 vegaEmbed("#vis2", spec1, {mode: "vega-lite"}).then(console.log).catch(console.warn);
     </script>
-
-  </div>
+    <br>
+    <h2 class = "subTitle">Average data in region</h2>
+    <br>
+    <h3 class = "text"> This section is unfinished</h3>
+    <br>
+   <div class = "center1" id="vis3"> </div>
+   <script>
+    const spec3 = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 400,
+    "title": { "text": "Average Happiness Score in each region" },
+    "data": {
+    "url":
+        "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"
+    },
+    "transform": [
+        {"filter": "datum.year >= 2007"}
+    ],
+    "encoding": {
+        "color": {
+          "field":"Region",
+          "type":"nominal",
+          "scale": {
+            "domain": [
+                "North America",
+                "South America",
+                "Europe",
+                "Africa",
+                "Asia",
+                "Oceania"
+                ],
+            "range": [
+                "#e41a1c",
+                "#984ea3",
+                "#ff7f00",
+                "#a6cee3",
+                "#377eb8",
+                "#a65628"
+                ]
+            },
+          "legend": {"format": ""}
+        }
+    },
+    "layer": [{
+        "mark": "line",
+        "encoding": {
+            "x": {
+                "field": "year", 
+                "type": "quantitative", 
+                "title": "year", 
+                "scale": {"type": "linear", "domain": [2007, 2021]}
+            },
+            "y": {
+                "field": "Score", 
+                "aggregate": "average", 
+                "type": "quantitative", 
+                "title": "Score",
+                "scale": {"type": "linear", "domain": [2, 8]}
+            }
+        }
+    }]
+}
+    vegaEmbed("#vis3", spec3, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+    </script>
 </body>
 </html>
