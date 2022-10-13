@@ -6,12 +6,47 @@
     "data": {
       "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"
     },
-    "transform": [
+    "params": [
       {
-        "aggregate": [{"op": "average", "field": "Score", "as": "mean_score"}],
-        "groupby": ["Region", "year"]
-      },
-      {"filter": "datum.year >= 2007"}
+        "name": "data",
+        "bind": {
+        "input": "select",
+        "options": [
+          "mean_score",
+          "mean_gdp",
+          "mean_social_support",
+          "mean_healthy",
+          "mean_freedom",
+          "mean_generosity",
+          "mean_corruption"
+        ],
+        "labels": [
+          "Score",
+          "GDP per capita",
+          "Social support",
+          "Healthy",
+          "Freedom",
+          "Generosity",
+          "Perceptions of corruption"],
+        "name": "Data: "
+        }
+      }   
+    ],
+    "transform": [
+        {"filter": "datum.year >= 2007"},
+        {
+            "aggregate": [
+              {"op": "average", "field": "Score", "as": "mean_score"},
+              {"op": "average", "field": "GDP_per_capita", "as": "mean_gdp"},
+              {"op": "average", "field": "Social_support", "as": "mean_social_support"},
+              {"op": "average", "field": "Healthy", "as": "mean_healthy"},
+              {"op": "average", "field": "Freedom", "as": "mean_freedom"},
+              {"op": "average", "field": "Generosity", "as": "mean_generosity"},
+              {"op": "average", "field": "Perceptions_of_corruption", "as": "mean_corruption"}
+            ],
+            
+            "groupby": ["Region", "year"]
+        }
     ],
     "encoding": {
       "color": {
@@ -46,7 +81,8 @@
             "field": "year",
             "type": "temporal",
             "timeUnit": "year",
-            "title": "year"
+            "title": "year",
+            "scale": {"type": "linear", "domain": [2007, 2021]}
           },
           "y": {
             "field": "mean_score",

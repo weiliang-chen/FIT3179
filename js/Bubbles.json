@@ -58,8 +58,8 @@
             "hconcat": [
                 {
                     "title": "Happiness Score and healthy life expectency",
-                    "width": 600,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "transform": [
                         {"filter": "datum.year == year_selection"},
                         {"filter": "datum.Healthy > 35"},
@@ -148,8 +148,8 @@
                     ]
                 },
                 {
-                    "width": 600,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and Social_support",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -244,8 +244,8 @@
         {
             "hconcat": [
                 {
-                    "width": 600,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and GPD per capita",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -335,8 +335,8 @@
                     ]
                 },
                 {
-                    "width": 600,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and Freedom",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -431,8 +431,8 @@
         {
             "hconcat": [
                 {
-                    "width": 600,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and Generosity",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -521,8 +521,8 @@
                     ]
                 },
                 {
-                    "width": 600,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and Perceptions_of_corruption",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -609,7 +609,12 @@
                                 }
                             }               
                         }
-                    ]
+                    ],
+                    "config":{
+                        "axis": {
+                            "grid": false
+                        }
+                    }
                 }       
             ]
         } 

@@ -1,6 +1,7 @@
+
 .title {
     margin: auto;
-    width: 60%;
+    width: 100%;
     padding-top: 20px;
     padding-bottom: 10px;
     background-color: rgb(75, 244, 221);
@@ -9,7 +10,7 @@
 
 .author {
     margin: auto;
-    width: 60%;
+    width: 100%;
     background-color: rgb(75, 244, 221);
     padding-bottom: 10px;
     text-align: right
@@ -17,7 +18,7 @@
 
 .subTitle {
     margin: auto;
-    width: 40%;
+    width: 60%;
     padding: 10px;
     text-align: center;
     background-color: lightblue;
@@ -28,7 +29,6 @@
     width: 100%;
     text-align: center;
     font-size: large;
-    color: white;
 }
 
 .center {
@@ -37,17 +37,44 @@
     padding: 20px;
     text-align: center;
     font-size: large;
-    color: white;
 }
 
 .text {
     margin: auto;
     background-color: rgb(250, 255, 193);
     padding: 10px;
-    width: 40%;
+    width: 60%;
     text-align: left;
 }
 
 .body {
-    background-image: url("image/bg4.jpg");
+    position: relative;
+    background-image: url("image/bg5.jpg");
 }
+
+.body::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0);
+}
+
+.container {
+    background: none;
+    overflow: none;
+    display: block;
+    z-index: 1;
+} 
+
+.firstlayer { 
+    background-color: #fff !important;
+    min-height: 100%;
+    max-height:100%;
+    width: 1300px; 
+    margin:0 auto;
+    border-left: solid 1px #000;  border-right: solid 1px #000;
+}
+

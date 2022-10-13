@@ -3,6 +3,7 @@
   "title": "Happiness Score in Countries between 2007 - 2021",
   "width": 800,
   "height": 500,
+  "background": "yellow",
   "params": [
     {
       "name": "year_selection",

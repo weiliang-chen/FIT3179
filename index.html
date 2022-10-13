@@ -7,23 +7,26 @@
 
   <link rel="stylesheet" href="css/style.css">
 
-  <title >Country Happiness Score Visualization </title>
+  <title>Country Happiness Score Visualization </title>
   
-  <h1 class="title"> Country Happiness Score Visualization </h1>
-  <h3 class="author"> Student Name: Weiliang Chen </h3>
+
 </head>
 <br>
 
 <body class = "body">
-  <h2 class = "subTitle">Happiness Score in Countries between 2007 - 2021</h2>
-  <br>
-  <h3 class = "text"> The happiness score is a data used to measure the happiness rating baesd on residents' evaluation to their country, we 
+  <div class = "container firstlayer"> 
+    <h1 class="title"> Country Happiness Score Visualization </h1>
+    <h3 class="author"> Student Name: Weiliang Chen </h3>
+    <br>
+    <h2 class = "subTitle">Happiness Score in Countries between 2007 - 2021</h2>
+    <br>
+    <h3 class = "text"> The happiness score is a data used to measure the happiness rating baesd on residents' evaluation to their country, we 
     can estimate the countries' living standard. In the map graph below, we can see the scores of countries between 2007 - 2021. </h3>
-  <br>
+    <br>
   
-  <div class = "center1" id="vis1"> </div>
+    <div class = "center1" id="vis1"> </div>
 
-  <script>
+     <script>
     const spec = {
       
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -39,7 +42,7 @@
         "min": 2007,
         "max": 2021,
         "step": 1,
-        "name": "year_selection"
+        "name": "Year selection"
       }
     },
     {
@@ -156,7 +159,7 @@
   "config": {}
   };
   vegaEmbed("#vis1", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
-  </script>
+    </script>
   <br>
   <br>
   <br>
@@ -168,7 +171,7 @@
   <div class="center", id="vis2">  </div>
     <script>
       const spec1 = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": 
     {
         "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"  
@@ -182,7 +185,7 @@
             "min": 2007,
             "max": 2021,
             "step": 1,
-            "name": "year_selection"
+            "name": "Year selection"
           }
         },
         {
@@ -227,8 +230,8 @@
             "hconcat": [
                 {
                     "title": "Happiness Score and healthy life expectency",
-                    "width": 650,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "transform": [
                         {"filter": "datum.year == year_selection"},
                         {"filter": "datum.Healthy > 35"},
@@ -291,34 +294,13 @@
                                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                                   ]
                             }
-                        },
-                        {
-                            "mark": {
-                                "type": "text",
-                                "align": "right",
-                                "baseline": "middle",
-                                "dx": -12,
-                                "fontSize": 11.5,
-                                "fontStyle": "italic"
-                            },
-                            "encoding": {
-                            "text": {"field": "Country", "type": "nominal"},
-                            "color": {"value": "black"},
-                            "opacity": {
-                                "condition": {
-                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
-                                    "value": 1
-                                    },
-                                    "value": 0
-                                    }
-                            }               
                         }
-                    ]
+                    ],
                 },
                 {
-                    "width": 650,
-                    "height": 600,
-                    "title": "Happiness Score and Social_support",
+                    "width": 400,
+                    "height": 400,
+                    "title": "Happiness Score and Social support",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
                         {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
@@ -382,38 +364,16 @@
                                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                                   ]
                             }
-                        },
-                        {
-                            "mark": {
-                                "type": "text",
-                                "align": "right",
-                                "baseline": "middle",
-                                "dx": -12,
-                                "fontSize": 11.5,
-                                "fontStyle": "italic"
-                            },
-                            "encoding": {
-                            "text": {"field": "Country", "type": "nominal"},
-                            "color": {"value": "black"},
-                            "opacity": {
-                                "condition": {
-                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
-                                    "value": 1
-                                    },
-                                    "value": 0
-                                    }
-                            }               
                         }
                     ]
                 }
-                
-              ]
+              ]            
         },
         {
             "hconcat": [
                 {
-                    "width": 650,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and GPD per capita",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -478,33 +438,12 @@
                                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                                   ]
                             }
-                        },
-                        {
-                            "mark": {
-                                "type": "text",
-                                "align": "right",
-                                "baseline": "middle",
-                                "dx": -12,
-                                "fontSize": 11.5,
-                                "fontStyle": "italic"
-                            },
-                            "encoding": {
-                            "text": {"field": "Country", "type": "nominal"},
-                            "color": {"value": "black"},
-                            "opacity": {
-                                "condition": {
-                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
-                                    "value": 1
-                                    },
-                                    "value": 0
-                                    }
-                            }               
                         }
                     ]
                 },
                 {
-                    "width": 650,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and Freedom",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -569,38 +508,16 @@
                                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                                   ]
                             }
-                        },
-                        {
-                            "mark": {
-                                "type": "text",
-                                "align": "right",
-                                "baseline": "middle",
-                                "dx": -12,
-                                "fontSize": 11.5,
-                                "fontStyle": "italic"
-                            },
-                            "encoding": {
-                            "text": {"field": "Country", "type": "nominal"},
-                            "color": {"value": "black"},
-                            "opacity": {
-                                "condition": {
-                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
-                                    "value": 1
-                                    },
-                                    "value": 0
-                                    }
-                            }               
                         }
                     ]
                 }
-                
               ]
         },
         {
             "hconcat": [
                 {
-                    "width": 650,
-                    "height": 600,
+                    "width": 400,
+                    "height": 400,
                     "title": "Happiness Score and Generosity",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
@@ -612,7 +529,7 @@
                             "field": "Generosity",
                             "type": "quantitative",
                             "title": "Generosity",
-                            "scale": {"type": "linear"}
+                            "scale": {"type": "linear", "domain": [-0.3, 0.8]}
                         },
                         "y": {
                             "field": "Score",
@@ -664,34 +581,13 @@
                                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                                   ]
                             }
-                        },
-                        {
-                            "mark": {
-                                "type": "text",
-                                "align": "right",
-                                "baseline": "middle",
-                                "dx": -12,
-                                "fontSize": 11.5,
-                                "fontStyle": "italic"
-                            },
-                            "encoding": {
-                            "text": {"field": "Country", "type": "nominal"},
-                            "color": {"value": "black"},
-                            "opacity": {
-                                "condition": {
-                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
-                                    "value": 1
-                                    },
-                                    "value": 0
-                                    }
-                            }               
                         }
                     ]
                 },
                 {
-                    "width": 650,
-                    "height": 600,
-                    "title": "Happiness Score and Perceptions_of_corruption",
+                    "width": 400,
+                    "height": 400,
+                    "title": "Happiness Score and Perceptions of corruption",
                     "transform": [
                         {"filter": "datum.year == year_selection"},
                         {"filter": "Continent_selection == null || datum.Region == Continent_selection"},
@@ -702,8 +598,8 @@
                         "x": {
                             "field": "Perceptions_of_corruption",
                             "type": "quantitative",
-                            "title": "Perceptions_of_corruption",
-                            "scale": {"type": "linear"}
+                            "title": "Perceptions of corruption",
+                            "scale": {"type": "linear", "domain": [0, 1]}
                         },
                         "y": {
                             "field": "Score",
@@ -755,33 +651,17 @@
                                     {"field": "Population", "type": "quantitative", "title":"Population in 2020"}
                                   ]
                             }
-                        },
-                        {
-                            "mark": {
-                                "type": "text",
-                                "align": "right",
-                                "baseline": "middle",
-                                "dx": -12,
-                                "fontSize": 11.5,
-                                "fontStyle": "italic"
-                            },
-                            "encoding": {
-                            "text": {"field": "Country", "type": "nominal"},
-                            "color": {"value": "black"},
-                            "opacity": {
-                                "condition": {
-                                    "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Italy' || datum['Country'] == 'United States of America'",
-                                    "value": 1
-                                    },
-                                    "value": 0
-                                }
-                            }               
                         }
-                    ]
-                }       
+                   ],
+              }       
             ]
         } 
-    ]
+    ],
+    "config": {
+        "axis": {
+            "grid": false
+        }
+    }
 }
 vegaEmbed("#vis2", spec1, {mode: "vega-lite"}).then(console.log).catch(console.warn);
     </script>
@@ -840,14 +720,14 @@ vegaEmbed("#vis2", spec1, {mode: "vega-lite"}).then(console.log).catch(console.w
             "field": "year",
             "type": "temporal",
             "timeUnit": "year",
-            "title": "year"
+            "title": "Year"
           },
           "y": {
             "field": "mean_score",
             "aggregate": "average",
             "type": "quantitative",
             "title": "Score",
-            "scale": {"type": "linear", "domain": [2, 8]}
+            "scale": {"type": "linear", "domain": [4, 8]}
           },
           "tooltip": [
             {"field": "Region", "type": "nominal"},
@@ -859,5 +739,6 @@ vegaEmbed("#vis2", spec1, {mode: "vega-lite"}).then(console.log).catch(console.w
 }
     vegaEmbed("#vis3", spec3, {mode: "vega-lite"}).then(console.log).catch(console.warn);
     </script>
+  </div>
 </body>
 </html>
