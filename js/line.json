@@ -30,10 +30,14 @@
           "Perceptions of corruption"],
         "name": "Data: "
         }
+      },
+      {
+        "name": "Region_bind",
+        "select": {"type": "point", "fields": ["Region"]},
+        "bind": "legend"
       }   
     ],
     "transform": [
-        {"filter": "datum.year >= 2007"},
         {
             "aggregate": [
               {"op": "average", "field": "Score", "as": "mean_score"},
@@ -46,7 +50,7 @@
             ],
             "groupby": ["Region", "year"]
         }
-    ],
+    ],     
     "encoding": {
       "color": {
         "field": "Region",
@@ -70,6 +74,10 @@
           ]
         },
         "legend": {"format": ""}
+      },
+      "opacity": {
+        "condition": {"param": "Region_bind", "value": 1},
+        "value": 0.2
       }
     },
     "layer": [
@@ -96,5 +104,10 @@
           ]
         }
       }
-    ]
+    ],
+    "config": {
+      "legend": {
+        "labelFontSize": 12
+      }
+    }
 }

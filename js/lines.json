@@ -1,0 +1,329 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/weiliang-chen/FIT3179/main/data/world-happiness-report.csv"
+    },
+    "params": [
+      {
+        "name": "Region_bind",
+        "select": {"type": "point", "fields": ["Region"]},
+        "bind": "legend"
+      }  
+    ],
+    "transform": [
+        {
+            "aggregate": [
+              {"op": "average", "field": "Score", "as": "mean_score"},
+              {"op": "average", "field": "GDP_per_capita", "as": "mean_gdp"},
+              {"op": "average", "field": "Social_support", "as": "mean_social_support"},
+              {"op": "average", "field": "Healthy", "as": "mean_healthy"},
+              {"op": "average", "field": "Freedom", "as": "mean_freedom"},
+              {"op": "average", "field": "Generosity", "as": "mean_generosity"},
+              {"op": "average", "field": "Perceptions_of_corruption", "as": "mean_corruption"}
+            ],
+            "groupby": ["Region", "year"]
+        }
+    ],
+    "vconcat":[
+        {
+            "title": {"text": "Average Happiness Score in each region"},
+            "width": 550,
+            "height": 260,
+            "encoding": {
+                "color": {
+                  "field": "Region",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "North America",
+                      "South America",
+                      "Europe",
+                      "Africa",
+                      "Asia",
+                      "Oceania"
+                    ],
+                    "range": [
+                      "#e41a1c",
+                      "#984ea3",
+                      "#ff7f00",
+                      "#a6cee3",
+                      "#377eb8",
+                      "#a65628"
+                    ]
+                  },
+                  "legend": {"format": ""}
+                },
+                "opacity": {
+                  "condition": {"param": "Region_bind", "value": 1},
+                  "value": 0.2
+                }
+              },
+              "layer": [
+                {
+                  "mark": "line",
+                  "encoding": {
+                    "x": {
+                      "field": "year",
+                      "type": "temporal",
+                      "timeUnit": "year",
+                      "title": "year",
+                      "scale": {"type": "linear", "domain": [2007, 2021]}
+                    },
+                    "y": {
+                      "field": "mean_score",
+                      "aggregate": "average",
+                      "type": "quantitative",
+                      "title": "Score",
+                      "scale": {"type": "linear", "domain": [3, 8]}
+                    },
+                    "tooltip": [
+                      {"field": "Region", "type": "nominal"},
+                      {"field": "mean_score", "type": "quantitative", "title": "Happniness_average", "format": ".2"}
+                    ]
+                  }
+                }
+              ]
+        },
+        {
+            "title": {"text": "Average GDP in Capita in each region"},
+            "width": 550,
+            "height": 260,
+            "encoding": {
+                "color": {
+                  "field": "Region",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "North America",
+                      "South America",
+                      "Europe",
+                      "Africa",
+                      "Asia",
+                      "Oceania"
+                    ],
+                    "range": [
+                      "#e41a1c",
+                      "#984ea3",
+                      "#ff7f00",
+                      "#a6cee3",
+                      "#377eb8",
+                      "#a65628"
+                    ]
+                  },
+                  "legend": {"format": ""}
+                },
+                "opacity": {
+                  "condition": {"param": "Region_bind", "value": 1},
+                  "value": 0.2
+                }
+              },
+              "layer": [
+                {
+                  "mark": "line",
+                  "encoding": {
+                    "x": {
+                      "field": "year",
+                      "type": "temporal",
+                      "timeUnit": "year",
+                      "title": "year",
+                      "scale": {"type": "linear", "domain": [2007, 2021]}
+                    },
+                    "y": {
+                      "field": "mean_gdp",
+                      "aggregate": "average",
+                      "type": "quantitative",
+                      "title": "Score",
+                      "scale": {"type": "linear", "domain": [7, 11]}
+                    },
+                    "tooltip": [
+                      {"field": "Region", "type": "nominal"},
+                      {"field": "mean_gdp", "type": "quantitative", "title": "GDP_average", "format": ".2"}
+                    ]
+                  }
+                }
+              ]
+        },
+        {
+            "title": {"text": "Average Social Support in each region"},
+            "width": 550,
+            "height": 260,
+            "encoding": {
+                "color": {
+                  "field": "Region",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "North America",
+                      "South America",
+                      "Europe",
+                      "Africa",
+                      "Asia",
+                      "Oceania"
+                    ],
+                    "range": [
+                      "#e41a1c",
+                      "#984ea3",
+                      "#ff7f00",
+                      "#a6cee3",
+                      "#377eb8",
+                      "#a65628"
+                    ]
+                  },
+                  "legend": {"format": ""}
+                },
+                "opacity": {
+                  "condition": {"param": "Region_bind", "value": 1},
+                  "value": 0.2
+                }
+              },
+              "layer": [
+                {
+                  "mark": "line",
+                  "encoding": {
+                    "x": {
+                      "field": "year",
+                      "type": "temporal",
+                      "timeUnit": "year",
+                      "title": "year",
+                      "scale": {"type": "linear", "domain": [2007, 2021]}
+                    },
+                    "y": {
+                      "field": "mean_social_support",
+                      "aggregate": "average",
+                      "type": "quantitative",
+                      "title": "Score",
+                      "scale": {"type": "linear", "domain": [0.6, 1.0]}
+                    },
+                    "tooltip": [
+                      {"field": "Region", "type": "nominal"},
+                      {"field": "mean_social_support", "type": "quantitative", "title": "Social_average", "format": ".2"}
+                    ]
+                  }
+                }
+              ]
+        },
+        {
+            "title": {"text": "Average Healthy life expectancy in each region"},
+            "width": 550,
+            "height": 260,
+            "encoding": {
+                "color": {
+                  "field": "Region",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "North America",
+                      "South America",
+                      "Europe",
+                      "Africa",
+                      "Asia",
+                      "Oceania"
+                    ],
+                    "range": [
+                      "#e41a1c",
+                      "#984ea3",
+                      "#ff7f00",
+                      "#a6cee3",
+                      "#377eb8",
+                      "#a65628"
+                    ]
+                  },
+                  "legend": {"format": ""}
+                },
+                "opacity": {
+                  "condition": {"param": "Region_bind", "value": 1},
+                  "value": 0.2
+                }
+              },
+              "layer": [
+                {
+                  "mark": "line",
+                  "encoding": {
+                    "x": {
+                      "field": "year",
+                      "type": "temporal",
+                      "timeUnit": "year",
+                      "title": "year",
+                      "scale": {"type": "linear", "domain": [2007, 2021]}
+                    },
+                    "y": {
+                      "field": "mean_healthy",
+                      "aggregate": "average",
+                      "type": "quantitative",
+                      "title": "Score",
+                      "scale": {"type": "linear", "domain": [40, 80]}
+                    },
+                    "tooltip": [
+                      {"field": "Region", "type": "nominal"},
+                      {"field": "mean_healthy", "type": "quantitative", "title": "healthy_average"}
+                    ]
+                  }
+                }
+              ]
+        },
+        {
+            "title": {"text": "Average Freedom Score in each region"},
+            "width": 550,
+            "height": 260,
+            "encoding": {
+                "color": {
+                  "field": "Region",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "North America",
+                      "South America",
+                      "Europe",
+                      "Africa",
+                      "Asia",
+                      "Oceania"
+                    ],
+                    "range": [
+                      "#e41a1c",
+                      "#984ea3",
+                      "#ff7f00",
+                      "#a6cee3",
+                      "#377eb8",
+                      "#a65628"
+                    ]
+                  },
+                  "legend": {"format": ""}
+                },
+                "opacity": {
+                  "condition": {"param": "Region_bind", "value": 1},
+                  "value": 0.2
+                }
+              },
+              "layer": [
+                {
+                  "mark": "line",
+                  "encoding": {
+                    "x": {
+                      "field": "year",
+                      "type": "temporal",
+                      "timeUnit": "year",
+                      "title": "year",
+                      "scale": {"type": "linear", "domain": [2007, 2021]}
+                    },
+                    "y": {
+                      "field": "mean_freedom",
+                      "aggregate": "average",
+                      "type": "quantitative",
+                      "title": "Score",
+                      "scale": {"type": "linear", "domain": [0.5, 1.0]}
+                    },
+                    "tooltip": [
+                      {"field": "Region", "type": "nominal"},
+                      {"field": "mean_freedom", "type": "quantitative", "title": "freedom_average", "format": ".2"}
+                    ]
+                  }
+                }
+              ]
+        }
+    ],
+    "config": {
+        "legend": {
+          "labelFontSize": 12
+        }
+    }
+}
