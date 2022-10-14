@@ -44,7 +44,6 @@
               {"op": "average", "field": "Generosity", "as": "mean_generosity"},
               {"op": "average", "field": "Perceptions_of_corruption", "as": "mean_corruption"}
             ],
-            
             "groupby": ["Region", "year"]
         }
     ],
@@ -85,11 +84,11 @@
             "scale": {"type": "linear", "domain": [2007, 2021]}
           },
           "y": {
-            "field": "mean_score",
+            "field": "mean_gdp",
             "aggregate": "average",
             "type": "quantitative",
             "title": "Score",
-            "scale": {"type": "linear", "domain": [2, 8]}
+            "scale": {"type": "linear"}
           },
           "tooltip": [
             {"field": "Region", "type": "nominal"},

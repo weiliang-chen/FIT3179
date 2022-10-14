@@ -4,14 +4,15 @@
     width: 100%;
     padding-top: 20px;
     padding-bottom: 10px;
-    background-color: rgb(75, 244, 221);
-    text-align: center
+    text-align: center;
+    font-style: italic;
+    font-size: 50px;
+    font-weight: 600;
 }
 
 .author {
     margin: auto;
     width: 100%;
-    background-color: rgb(75, 244, 221);
     padding-bottom: 10px;
     text-align: right
 }
@@ -21,6 +22,7 @@
     width: 60%;
     padding: 10px;
     text-align: center;
+    font-size: 30px;
     background-color: lightblue;
 }
 
@@ -28,7 +30,8 @@
     margin: auto;
     width: 100%;
     text-align: center;
-    font-size: large;
+    font-size: larger;
+    padding-left: 10px;
 }
 
 .center {
@@ -36,14 +39,15 @@
     width: 100%;
     padding: 20px;
     text-align: center;
-    font-size: large;
+    font-size: larger;
 }
 
 .text {
     margin: auto;
-    background-color: rgb(250, 255, 193);
+    background-color: rgb(246, 255, 227);
     padding: 10px;
     width: 60%;
+    font-size: 20px;
     text-align: left;
 }
 
@@ -70,11 +74,12 @@
 } 
 
 .firstlayer { 
-    background-color: #fff !important;
+    background-color: lightyellow;
     min-height: 100%;
     max-height:100%;
     width: 1300px; 
     margin:0 auto;
     border-left: solid 1px #000;  border-right: solid 1px #000;
+    
 }
 

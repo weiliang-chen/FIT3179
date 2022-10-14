@@ -50,7 +50,7 @@
         "Oceania"],
       "name": "Map Focus: "
       }
-  }      
+    }      
   ],
   "projection": {"type": "equalEarth", "rotate": [-150, 0, 0], "scale": {"expr": "zoom_level"}, "center": {"expr": "center_to"}},
   "layer": [
